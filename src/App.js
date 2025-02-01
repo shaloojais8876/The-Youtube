@@ -1,24 +1,46 @@
-import logo from './logo.svg';
+import Header from './components/Header';
+import Body from './components/Body';
 import './App.css';
+import { Provider } from 'react-redux';
+import store from './utils/store';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import WatchPage from './components/WatchPage';
+import MainContainer from './components/MainContainer';
 
+
+//createBrowserRouter will takess an array of objects.
+const appRouter = createBrowserRouter([{
+
+  path : "/",
+  element : <Body/>,
+  children : [
+     {
+      path : "/",
+      element : <MainContainer/>,
+     },
+
+     {
+      path : "watch",
+      element : <WatchPage/>,
+     },
+
+  ]
+  
+}]);
+
+
+
+
+//3re thing need to provide our store to our App.Through <Provider>
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Provider store = { store }>
+    <div className="w-full h-screen overflow-x-hidden">
+    <Header />
+   <RouterProvider router= {appRouter}/>     {/* Body is rendering over here */}
+      
     </div>
+    </Provider> 
   );
 }
 
