@@ -1,9 +1,10 @@
 import { Menu, Search, Mic, Bell, User } from "lucide-react";
 import { YOUTUBE_LOGO, YOUTUBE_SEARCH_API } from "../utils/constants";
 import Button from "../utils/buttonStyles";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { useEffect, useState } from "react";
+import { cacheResults } from "../utils/searchSlice";
 
 
 const Header = () => {
@@ -11,11 +12,19 @@ const Header = () => {
 const [searchQuery, setSearchQuery] = useState("");
 const [suggestions, setSuggestions] = useState([]);
 const [showSuggestions, setShowSuggestions] = useState(false);
+const searchCache = useSelector((store) => store.search); 
+
+
 
 useEffect(() => {
- const timer = setTimeout(() => 
-  getSearchSuggestions(),200);
-
+ const timer = setTimeout(() => {
+   if(searchCache[searchQuery]){
+       setSuggestions(searchCache[searchQuery]);
+   }  
+   else{
+    getSearchSuggestions();
+   }
+},200);
    return() =>{
     clearTimeout(timer);
 };
@@ -27,7 +36,13 @@ const getSearchSuggestions = async() => {
   const json = await data.json();
   setSuggestions(json[1]);
   //console.log(json);
+
+  dispatch(cacheResults({
+    [searchQuery] : json[1],
+  })
+  );
 };
+
 
 const dispatch = useDispatch();
 

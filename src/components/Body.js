@@ -6,7 +6,7 @@ const Body = () => {
   return (
     <div className="flex">
       <Sidebar />
-       <Outlet />  {/* Children are getting render inside my outlet*/}
+       <Outlet />  {/* Children are getting render inside my Outlet*/}
     </div>
   )
 }
