@@ -5,18 +5,17 @@ import { IoIosArrowForward } from "react-icons/io";
 import { FaHistory } from "react-icons/fa";
 import { CgPlayList } from "react-icons/cg";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 
 const Sidebar = () => {
-
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
-     //These if part of the code is called "Early Return Pattern".
+  const location = useLocation();
+  const isWatchRoute = location.pathname === '/watch';
   if(!isMenuOpen) return null;
 
-  return (
-    <div className="mx-3 cursor-pointer">
-         
+  const sidebarContent =  (
+    <div className="mx-3 cursor-pointer">   
       <div className="w-48">
         <ul>
          <li className="px-2 py-3 flex items-center gap-3 hover:bg-gray-200 hover:rounded-lg">
@@ -60,6 +59,24 @@ const Sidebar = () => {
 
     </div>
   )
+
+  if (isWatchRoute) {
+    return (
+      <div 
+        className={`fixed top-14 left-0 h-full bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${
+          isMenuOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        {sidebarContent}
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative">
+      {sidebarContent}
+    </div>
+  );
 }
 
 export default Sidebar

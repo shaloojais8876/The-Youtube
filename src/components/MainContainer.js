@@ -4,7 +4,7 @@ import VideoContainer from './VideoContainer'
 
 const MainContainer = () => {
   return (
-    <div className=" w-full">
+    <div className="w-full scrollbar-hide">
       <ButtonList />
       <VideoContainer />
     </div>

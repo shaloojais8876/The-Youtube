@@ -2,7 +2,6 @@
   "name": "the-youtube",
   "version": "0.1.0",
   "private": true,
-  
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.1",
     "@tailwindcss/line-clamp": "^0.4.4",
@@ -11,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "ajv": "^8.17.1",
     "ajv-keywords": "^5.1.0",
+    "antd": "^5.24.0",
     "class-variance-authority": "^0.7.1",
     "lucide-react": "^0.473.0",
     "react": "^19.0.0",

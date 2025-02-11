@@ -1,33 +1,40 @@
-import React, { useEffect, useState } from 'react'
-import { YOUTUBE_VIDEOS_API } from '../utils/constants';
-import VideoCard from './VideoCard';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { YOUTUBE_VIDEOS_API } from "../utils/constants";
+import VideoCard from "./VideoCard";
+import { Link } from "react-router-dom";
+import { Col, Row, Skeleton } from "antd";
+import { useSelector } from "react-redux";
 
 const VideoContainer = () => {
   const [videos, setVideos] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-
     getVideos();
   }, []);
 
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+
   const getVideos = async () => {
-   const data = await fetch(YOUTUBE_VIDEOS_API);
+    setLoading(true);
+    const data = await fetch(YOUTUBE_VIDEOS_API);
     const json = await data.json();
-    //console.group(json)
-     setVideos(json.items);
+    setVideos(json.items);
+    setLoading(false);
   };
 
   return (
-    <div className="flex flex-wrap mt-4">
-      {/* <VideoCard info={videos[0]} />  */}
-      {
-        videos.map((video) => (
-          <Link  key = {video.id} to ={ "/watch?v=" + video.id }>
-          <VideoCard info={video} />
+    <Skeleton active loading={loading}>
+      <Row gutter={16} className={`mt-4 scrollbar-hide`} >
+        {videos.map((video, index) => (
+          <Col md={isMenuOpen ? 8 : 6}  className="w-full flex-grow" key={index} >
+          <Link key={video.id} to={`/watch?v=${video.id}&channelID=${video.snippet.channelId}`} color="black" className="text-black">
+            <VideoCard info={video} />
           </Link>
-        ))} 
-    </div>
+          </Col>
+        ))}
+      </Row>
+    </Skeleton>
   );
 };
 
