@@ -7,7 +7,7 @@ const Shimmer = () => {
   .fill(0)
   .map((n, i) => (
    
-    <div key={i} className="m-2 w-[395px] rounded-lg">
+    <div key={i} className="m-2 w-[396px] rounded-lg">
       <div className=" h-[225px] rounded-xl bg-gray-200 object-cover"></div>
       <div className="flex mt-3">
         <div className="w-10 bg-gray-200 h-10 rounded-full mr-3"></div>
