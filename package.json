@@ -12,6 +12,7 @@
     "ajv-keywords": "^5.1.0",
     "antd": "^5.24.0",
     "class-variance-authority": "^0.7.1",
+    "infinite-scroll": "^4.0.1",
     "lucide-react": "^0.473.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

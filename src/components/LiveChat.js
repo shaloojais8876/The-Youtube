@@ -12,8 +12,8 @@ const [liveMessage, setLiveMessage] = useState("");
 
     useEffect(() => {
         const interval = setInterval(() => {
-         //API Calling
-         console.log("API CALLING");
+         
+         //console.log("API CALLING");
          dispatch(addMessage({name : generateRandomName(),
                               message : generateRandomMessage(20),
          })

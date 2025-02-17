@@ -11,7 +11,7 @@ import MainContainer from "./components/MainContainer";
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Body />,
+    element: <><Header /><Body /> </>,
     children: [
       {
         path: "/",
@@ -31,7 +31,7 @@ function App() {
   return (
     <Provider store={store}>
       <div className="w-full h-screen overflow-x-hidden">
-        <Header /> 
+        
         <RouterProvider router={appRouter} />{" "}
       </div>
     </Provider>

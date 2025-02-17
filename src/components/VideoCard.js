@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-//import { YOUTUBE_CHANNEL_ICON } from '../utils/constants';
 import { API_KEY } from "../utils/constants";
 
 const VideoCard = ({ info }) => {
@@ -16,8 +15,7 @@ const VideoCard = ({ info }) => {
         API_KEY
     );
     const json = await dataOfIcon.json();
-    //console.log(json);
-    localStorage.setItem('item',json.items[0].snippet.thumbnails.high.url)
+   // console.log(json);
     setYoutubeIcon(json.items[0].snippet.thumbnails.high.url);
   };
 
@@ -26,7 +24,7 @@ const VideoCard = ({ info }) => {
   const { channelTitle, title, thumbnails } = snippet;
 
   return (
-    <div className="p-1 m-2 w-full  rounded-lg hover:bg-gray-100  cursor-pointer">
+    <div className=" w-full rounded-lg cursor-pointer">
       <img
         className="w-full h-[225px] rounded-xl hover:rounded-none object-cover"
         alt="thumbnail"
@@ -41,7 +39,7 @@ const VideoCard = ({ info }) => {
           />
         )}
         <div className="flex-1">
-          <h3 className="font-semibold text-md line-clamp-2">{title}</h3>
+          <h3 className="font-semibold text-md text-black line-clamp-2">{title}</h3>
           <p className="text-gray-500 text-sm mt-1">{channelTitle}</p>
           <p className="text-gray-500 text-sm">{statistics.viewCount} views</p>
         </div>
